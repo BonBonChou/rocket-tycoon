@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>火箭公司模擬經營小遊戲</title>
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      padding: 2em;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      border-radius: 15px;
+      padding: 2em;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+    .hidden { display: none; }
+    button {
+      margin: 1em;
+      padding: 0.75em 2em;
+      font-size: 1.2em;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: #1e90ff;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    button:hover { background: #63b3ed; }
+    .choice-btn {
+      display: block;
+      margin: 1em auto;
+      width: 90%;
+    }
+    .score-display {
+      margin-top: 1em;
+      font-size: 2em;
+      color: #00ffcc;
+    }
+    #ending-text {
+      font-size: 1.6em;
+      margin: 1em 0;
+    }
+    .all-endings {
+      margin-top: 2em;
+      font-size: 0.95em;
+      color: #eee;
+      text-align: left;
+      padding: 1em;
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    img.logo {
+      max-width: 150px;
+      margin: 0.5em auto;
+      background: white;
+      border-radius: 10px;
+      padding: 0.5em;
+      display: block;
+    }
+    .intro {
+      text-align: left;
+      margin-bottom: 2em;
+      background: rgba(255,255,255,0.05);
+      padding: 1em;
+      border-radius: 10px;
+    }
+    .selected-choice {
+      background-color: green !important;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <div id="start-screen">
+    <h1>🚀 火箭公司模擬經營遊戲</h1>
+    <div class="intro">
+      <h3>🔍 遊戲說明</h3>
+      <p>🌌 <strong>背景故事</strong><br>你是一家新創火箭公司的負責人，正準備踏入太空產業的競爭舞台。從研發火箭、面對資金危機，到參與登月與火星任務，你的每個選擇都將影響公司的命運！</p>
+      <p>🧠 <strong>玩法簡介</strong><br>遊戲共五回合，每回合會出現一個情境，讓你從三個選項中擇一。不同的火箭公司對每個選擇的反應不同，將影響你的最終得分。</p>
+      <p>🏆 <strong>目標與結局</strong><br>遊戲結束後，將根據你的總分給予不同的評語與稱號。你能成為登上火星的傳奇領航者嗎？</p>
+    </div>
+    <p>請選擇你要經營的火箭公司：</p>
+    <div>
+      <img src="https://upload.wikimedia.org/wikipedia/en/7/7b/SpinLaunch.svg" class="logo" alt="SpinLaunch">
+      <button onclick="startGame('SpinLaunch')">SpinLaunch（旋轉發射）</button>
+    </div>
+    <div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" class="logo" alt="SpaceX">
+      <button onclick="startGame('SpaceX')">SpaceX（回收火箭）</button>
+    </div>
+    <div>
+      <img src="https://upload.wikimedia.org/wikipedia/zh/3/31/Relativity_Space_Logo.svg" class="logo" alt="Relativity Space">
+      <button onclick="startGame('Relativity')">相對論公司（3D列印）</button>
+    </div>
+  </div>
+
+  <div id="game-screen" class="hidden">
+    <h2 id="round-title"></h2>
+    <p id="scenario"></p>
+    <div id="choices"></div>
+    <div id="round-score" class="score-display hidden"></div>
+    <button id="next-btn" class="hidden" onclick="nextRound()">下一題</button>
+  </div>
+
+  <div id="end-screen" class="hidden">
+    <h2>🌟 遊戲結束！</h2>
+    <p id="ending-text"></p>
+    <div class="score-display" id="score-display"></div>
+    <div class="all-endings">
+      <h3>所有評語對照表：</h3>
+      <ul>
+        <li>0~4 分：雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！</li>
+        <li>5~7 分：你已參與月球任務，是值得信賴的太空科技創業家！</li>
+        <li>8~9 分：太棒了！你帶領公司登上月球，成為月球探險隊長！</li>
+        <li>10 分：傳奇誕生！你領導人類登上火星，成為火星領航者！</li>
+      </ul>
+    </div>
+    <button onclick="location.reload()">重新開始</button>
+  </div>
+</div>
+
+<script>
+const gameData = [
+  {
+    title: "第 1 回合：創業初期",
+    scenario: "你剛成立火箭公司，必須決定第一筆資金的用途。",
+    choices: [
+      { text: "投資在火箭技術研發", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 } },
+      { text: "大量行銷宣傳以吸引投資", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 1 } },
+      { text: "購買二手設備快速開始測試", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 1 } }
+    ]
+  },
+  {
+    title: "第 2 回合：第一次發射",
+    scenario: "你即將進行首次火箭發射，面臨氣候不穩的情況。",
+    choices: [
+      { text: "延期發射，確保安全", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 2 } },
+      { text: "如期發射，展現自信", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 0 } },
+      { text: "邀請媒體直播，增加曝光", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 } }
+    ]
+  },
+  {
+    title: "第 3 回合：面對競爭",
+    scenario: "一間新創公司推出革命性低成本發射技術。",
+    choices: [
+      { text: "與對方合作開發新技術", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 2 } },
+      { text: "強化自家技術與品牌差異", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 1 } },
+      { text: "壓低價格與對方競爭市場", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 1 } }
+    ]
+  },
+  {
+    title: "第 4 回合：進軍月球任務",
+    scenario: "NASA 開放商業公司參與月球任務。",
+    choices: [
+      { text: "積極爭取 NASA 合約", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 } },
+      { text: "主打私人月球旅遊計畫", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 } },
+      { text: "專注地球軌道市場避免風險", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 0 } }
+    ]
+  },
+  {
+    title: "第 5 回合：火星移民的未來",
+    scenario: "火星殖民計畫啟動，你公司是否參與？",
+    choices: [
+      { text: "全力投入火星載人任務", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 2 } },
+      { text: "提供火星任務的物流與資源運輸", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 1 } },
+      { text: "觀望火星發展，專注近地任務", effect: { SpinLaunch: 1, SpaceX: 0, Relativity: 1 } }
+    ]
+  }
+];
+
+const endings = [
+  { score: 4, text: "雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！" },
+  { score: 7, text: "你已參與月球任務，是值得信賴的太空科技創業家！" },
+  { score: 9, text: "太棒了！你帶領公司登上月球，成為月球探險隊長！" },
+  { score: 10, text: "傳奇誕生！你領導人類登上火星，成為火星領航者！" }
+];
+
+let currentRound = 0;
+let company = "";
+let score = 0;
+let currentChoiceScore = 0;
+
+function startGame(selectedCompany) {
+  company = selectedCompany;
+  currentRound = 0;
+  score = 0;
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.remove("hidden");
+  loadRound();
+}
+
+function loadRound() {
+  const round = gameData[currentRound];
+  document.getElementById("round-title").textContent = round.title;
+  document.getElementById("scenario").textContent = round.scenario;
+  const choiceDiv = document.getElementById("choices");
+  choiceDiv.innerHTML = "";
+  document.getElementById("round-score").classList.add("hidden");
+  document.getElementById("next-btn").classList.add("hidden");
+
+  round.choices.forEach(choice => {
+    const btn = document.createElement("button");
+    btn.textContent = choice.text;
+    btn.className = "choice-btn";
+    btn.onclick = () => {
+      currentChoiceScore = choice.effect[company] || 0;
+      score += currentChoiceScore;
+      document.getElementById("round-score").innerHTML =
+        `本回合得分：<strong>${currentChoiceScore}</strong><br>目前總分：<strong>${score}</strong>`;
+      document.getElementById("round-score").classList.remove("hidden");
+      document.getElementById("next-btn").classList.remove("hidden");
+      choiceDiv.querySelectorAll("button").forEach(b => {
+        b.disabled = true;
+        if (b === btn) b.classList.add("selected-choice");
+      });
+    };
+    choiceDiv.appendChild(btn);
+  });
+}
+
+function nextRound() {
+  currentRound++;
+  if (currentRound >= gameData.length) {
+    showEnding();
+  } else {
+    loadRound();
+  }
+}
+
+function showEnding() {
+  document.getElementById("game-screen").classList.add("hidden");
+  document.getElementById("end-screen").classList.remove("hidden");
+  let ending = endings.find(e => score <= e.score) || endings[endings.length - 1];
+  document.getElementById("ending-text").textContent = ending.text;
+  document.getElementById("score-display").textContent = `你的總分：${score}/10`;
+}
+</script>
+</body>
+</html>
