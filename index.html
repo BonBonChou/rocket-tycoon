@@ -51,17 +51,25 @@
     .comment-display{
       margin-top: 1em;
       font-size: 2em;
-      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #00ffcc;
     }
+    
     #ending-text {
       font-size: 1.6em;
       margin: 1em 0;
-      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo);
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: rainbow 2s ease infinite;
     }
+    
+    @keyframes rainbow {
+      0% { background-position: 100% 50%; }
+      50% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    
     .all-endings {
       margin-top: 1.6em;
       font-size: 0.95em;
