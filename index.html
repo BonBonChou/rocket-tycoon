@@ -90,15 +90,15 @@
     <p>請選擇你要經營的火箭公司：</p>
     <div>
       <img src="https://upload.wikimedia.org/wikipedia/en/7/7b/SpinLaunch.svg" class="logo" alt="SpinLaunch">
-      <button onclick="startGame('SpinLaunch')">SpinLaunch（旋轉發射）</button>
+      <button onclick="startGame('SpinLaunch')">旋轉發射公司</button>
     </div>
     <div>
       <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" class="logo" alt="SpaceX">
-      <button onclick="startGame('SpaceX')">SpaceX（回收火箭）</button>
+      <button onclick="startGame('SpaceX')">SpaceX</button>
     </div>
     <div>
       <img src="https://upload.wikimedia.org/wikipedia/zh/3/31/Relativity_Space_Logo.svg" class="logo" alt="Relativity Space">
-      <button onclick="startGame('Relativity')">相對論公司（3D列印）</button>
+      <button onclick="startGame('Relativity')">相對論空間公司</button>
     </div>
   </div>
 
@@ -139,21 +139,21 @@ const gameData = [
     ]
   },
   {
-    title: "第 2 回合：第一次發射",
+    title: "第 2 回合：火箭設計",
+    scenario: "你準備設計公司的第一款火箭...",
+    choices: [
+      { text: "使用傳統液體燃料火箭", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 1 } },
+      { text: "透過旋轉發射技術，使用不耗燃料的火箭", effect: { SpinLaunch: 2, SpaceX: 0, Relativity: 0 } },
+      { text: "用3D列印打造火箭結構", effect: { SpinLaunch: 0, SpaceX: 1, Relativity: 2 } }
+    ]
+  },
+  {
+    title: "第 3 回合：第一次發射",
     scenario: "你即將進行首次火箭發射，面臨氣候不穩的情況。",
     choices: [
       { text: "延期發射，確保安全", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 2 } },
       { text: "如期發射，展現自信", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 0 } },
       { text: "邀請媒體直播，增加曝光", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 } }
-    ]
-  },
-  {
-    title: "第 3 回合：面對競爭",
-    scenario: "一間新創公司推出革命性低成本發射技術。",
-    choices: [
-      { text: "與對方合作開發新技術", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 2 } },
-      { text: "強化自家技術與品牌差異", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 1 } },
-      { text: "壓低價格與對方競爭市場", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 1 } }
     ]
   },
   {
