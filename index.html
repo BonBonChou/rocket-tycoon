@@ -43,6 +43,11 @@
       font-size: 2em;
       color: #00ffcc;
     }
+    .score-display2 {
+      margin-top: 1em;
+      font-size: 1em;
+      color: #00ffcc;
+    }
     #ending-text {
       font-size: 1.6em;
       margin: 1em 0;
@@ -106,7 +111,9 @@
     <h2 id="round-title"></h2>
     <p id="scenario"></p>
     <div id="choices"></div>
-    <div id="round-score" class="score-display hidden"></div>
+    <div id="round-comment" class="score-display hidden"></div>
+    <div id="round-score" class="score-display2 hidden"></div>
+    
     <button id="next-btn" class="hidden" onclick="nextRound()">下一題</button>
   </div>
 
@@ -133,45 +140,105 @@ const gameData = [
     title: "第 1 回合：創業初期",
     scenario: "你剛成立火箭公司，必須決定第一筆資金的用途。",
     choices: [
-      { text: "投資在火箭技術研發", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 } },
-      { text: "大量行銷宣傳以吸引投資", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 1 } },
-      { text: "購買二手設備快速開始測試", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 1 } }
+      { text: "投資在火箭技術研發", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "研發打下基礎，未來發展潛力大。",
+      SpaceX: "堅持技術優先，符合你的公司文化。",
+      Relativity: "高風險高報酬，有助技術突破。"
+      } },
+      { text: "大量行銷宣傳以吸引投資", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 }, comments: {
+      SpinLaunch: "行銷帶來關注，但技術基礎仍需加強。",
+      SpaceX: "SpaceX 較少依賴行銷，但曝光仍有幫助。",
+      Relativity: "新創公司靠曝光吸引資金是關鍵。"
+      } },
+      { text: "購買二手設備快速開始測試", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 1 }, comments: {
+      SpinLaunch: "能快速進入實測階段，符合創新精神。",
+      SpaceX: "成本有效率，但可能不利長期品質管控。",
+      Relativity: "靈活使用資源，有助快速原型測試。"
+      } }
     ]
   },
   {
     title: "第 2 回合：火箭設計",
     scenario: "你準備設計公司的第一款火箭...",
     choices: [
-      { text: "使用傳統液體燃料火箭", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 1 } },
-      { text: "透過旋轉發射技術，使用不耗燃料的火箭", effect: { SpinLaunch: 2, SpaceX: 0, Relativity: 0 } },
-      { text: "用3D列印打造火箭結構", effect: { SpinLaunch: 0, SpaceX: 1, Relativity: 2 } }
+      { text: "使用傳統液體燃料火箭", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 1 }, comments: {
+      SpinLaunch: "這與你公司的技術不太吻合...",
+      SpaceX: "延續既有成功經驗，是穩定選擇。",
+      Relativity: "雖然成熟，但較難展現創新。"
+      } },
+      { text: "透過旋轉發射技術，使用不耗燃料的火箭", effect: { SpinLaunch: 2, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "正是你公司的核心技術！",
+      SpaceX: "技術太前衛，不太符合現階段策略...",
+      Relativity: "不是公司主要研發方向，或許未來可以嘗試..."
+      } },
+      { text: "用3D列印打造火箭結構", effect: { SpinLaunch: 0, SpaceX: 1, Relativity: 2 }, comments: {
+      SpinLaunch: "創新但不一定與你技術結合...",
+      SpaceX: "具有潛力，但仍需時間導入。",
+      Relativity: "正是你主打的製造優勢！"
+      } }
     ]
   },
   {
     title: "第 3 回合：第一次發射",
     scenario: "你即將進行首次火箭發射，面臨氣候不穩的情況。",
     choices: [
-      { text: "延期發射，確保安全", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 2 } },
-      { text: "如期發射，展現自信", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 0 } },
-      { text: "邀請媒體直播，增加曝光", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 } }
+      { text: "延期發射，確保安全", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "保守但可避免災難性損失。",
+      SpaceX: "以安全為重，是成熟企業的態度。",
+      Relativity: "穩紮穩打，有助建立聲譽。"
+      } },
+      { text: "如期發射，展現自信", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 0 }, comments: {
+      SpinLaunch: "展現魄力，但需承擔風險。",
+      SpaceX: "提升能見度，但成功率需顧慮。",
+      Relativity: "具挑戰性，可能影響形象..."
+      } },
+      { text: "邀請媒體直播，增加曝光", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 }, comments: {
+      SpinLaunch: "曝光度大增，但失敗風險也同步放大。",
+      SpaceX: "有助行銷，但也需配合可靠執行力。",
+      Relativity: "對新創來說是良好行銷機會。"
+      } }
     ]
   },
   {
     title: "第 4 回合：進軍月球任務",
     scenario: "NASA 開放商業公司參與阿提米斯計畫。",
     choices: [
-      { text: "積極爭取 NASA 合約", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 } },
-      { text: "主打私人月球旅遊計畫", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 } },
-      { text: "專注地球軌道市場避免風險", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 0 } }
+      { text: "積極爭取 NASA 合約", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "與 NASA 合作可提升可信度。",
+      SpaceX: "這是你的強項，值得爭取。",
+      Relativity: "雖競爭激烈，但有利品牌提升。"
+      } },
+      { text: "主打私人月球旅遊計畫", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 }, comments: {
+      SpinLaunch: "尚未成熟的市場，風險較高。",
+      SpaceX: "拓展新市場，但需高資源投入。",
+      Relativity: "能吸引創新投資人目光。"
+      } },
+      { text: "專注地球軌道市場避免風險", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 1 }, comments: {
+      SpinLaunch: "穩健經營，集中資源發展核心技術。",
+      SpaceX: "與目前策略略有不同，但仍合理。",
+      Relativity: "有助穩定現金流。"
+      } }
     ]
   },
   {
     title: "第 5 回合：火星移民的未來",
     scenario: "火星殖民計畫啟動，公司是否參與？",
     choices: [
-      { text: "全力投入火星載人任務", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 2 } },
-      { text: "提供火星任務的物流與資源運輸", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 1 } },
-      { text: "觀望火星發展，專注近地任務", effect: { SpinLaunch: 1, SpaceX: 0, Relativity: 1 } }
+      { text: "全力投入火星載人任務", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "超越技術極限，但風險與成本極高。",
+      SpaceX: "實現夢想，順勢而為。",
+      Relativity: "壯志凌雲，挑戰極限。"
+      } },
+      { text: "提供火星任務的物流與資源運輸", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "專注你擅長的發射服務。",
+      SpaceX: "扮演重要供應角色，穩健成長。",
+      Relativity: "可結合3D列印優勢提供設備支援。"
+      } },
+      { text: "觀望火星發展，專注近地任務", effect: { SpinLaunch: 2, SpaceX: 0, Relativity: 1 }, comments: {
+      SpinLaunch: "集中火力突破眼前挑戰。",
+      SpaceX: "可能錯失戰略先機...",
+      Relativity: "利於累積實力但有點保守。"
+      } }
     ]
   }
 ];
@@ -203,6 +270,7 @@ function loadRound() {
   document.getElementById("scenario").textContent = round.scenario;
   const choiceDiv = document.getElementById("choices");
   choiceDiv.innerHTML = "";
+  document.getElementById("round-comment").classList.add("hidden");
   document.getElementById("round-score").classList.add("hidden");
   document.getElementById("next-btn").classList.add("hidden");
 
@@ -213,9 +281,13 @@ function loadRound() {
     btn.onclick = () => {
       currentChoiceScore = choice.effect[company] || 0;
       score += currentChoiceScore;
+      const comment = choice.comments[company] || "這個選擇帶來了一些變化。";
+      document.getElementById("round-comment").textContent = comment;
+      document.getElementById("round-comment").classList.remove("hidden");
       document.getElementById("round-score").innerHTML =
         `本回合得分：<strong>${currentChoiceScore}</strong><br>目前總分：<strong>${score}</strong>`;
       document.getElementById("round-score").classList.remove("hidden");
+      
       document.getElementById("next-btn").classList.remove("hidden");
       choiceDiv.querySelectorAll("button").forEach(b => {
         b.disabled = true;
