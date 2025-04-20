@@ -48,6 +48,11 @@
       font-size: 1em;
       color: #ffffff;
     }
+    .endscore-display {
+      margin-top: 1em;
+      font-size: 1.5em;
+      color: #00ffcc;
+    }
     .comment-display{
       margin-top: 1em;
       font-size: 2em;
@@ -152,7 +157,7 @@
   <div id="end-screen" class="hidden">
     <h2>🌟 遊戲結束！</h2>
     <p id="ending-text"></p>
-    <div class="score-display" id="score-display"></div>
+    <div class="endscore-display" id="endscore-display"></div>
     <div class="all-endings">
       <h3>所有評語對照表：</h3>
       <ul>
@@ -344,7 +349,7 @@ function showEnding() {
   document.getElementById("end-screen").classList.remove("hidden");
   let ending = endings.find(e => score <= e.score) || endings[endings.length - 1];
   document.getElementById("ending-text").textContent = ending.text;
-  document.getElementById("score-display").textContent = `你的總分：${score}/10`;
+  document.getElementById("endscore-display").textContent = `你的總分：${score}/10`;
 }
 </script>
 </body>
