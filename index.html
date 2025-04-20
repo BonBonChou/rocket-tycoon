@@ -46,14 +46,24 @@
     .score-display2 {
       margin-top: 1em;
       font-size: 1em;
-      color: #00ffcc;
+      color: #ffffff;
+    }
+    .comment-display{
+      margin-top: 1em;
+      font-size: 2em;
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     #ending-text {
       font-size: 1.6em;
       margin: 1em 0;
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .all-endings {
-      margin-top: 2em;
+      margin-top: 1.6em;
       font-size: 0.95em;
       color: #eee;
       text-align: left;
@@ -79,6 +89,20 @@
     .selected-choice {
       background-color: green !important;
     }
+    
+    #round-title {
+      font-size: *2em;  /* 你可以依需求調整數值 */
+      font-weight: bold; /* 也可以設為 normal, lighter 等 */
+      margin-bottom: 0.5em;
+      color: #00ffcc;
+    }
+
+    #scenario {
+      font-size: 1.5em;
+      line-height: 1.6;
+      margin-bottom: 1em;
+    }
+
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head>
@@ -111,7 +135,7 @@
     <h2 id="round-title"></h2>
     <p id="scenario"></p>
     <div id="choices"></div>
-    <div id="round-comment" class="score-display hidden"></div>
+    <div id="round-comment" class="comment-display hidden"></div>
     <div id="round-score" class="score-display2 hidden"></div>
     
     <button id="next-btn" class="hidden" onclick="nextRound()">下一題</button>
@@ -224,8 +248,8 @@ const gameData = [
     title: "第 5 回合：火星移民的未來",
     scenario: "火星殖民計畫啟動，公司是否參與？",
     choices: [
-      { text: "全力投入火星載人任務", effect: { SpinLaunch: 1, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "超越技術極限，但風險與成本極高。",
+      { text: "全力投入火星載人任務", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "超越技術極限，風險與成本極高...",
       SpaceX: "實現夢想，順勢而為。",
       Relativity: "壯志凌雲，挑戰極限。"
       } },
