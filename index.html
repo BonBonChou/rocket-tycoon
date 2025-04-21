@@ -150,7 +150,7 @@
     .company-list {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 16px;
       margin-top: 30px;
     }
 
@@ -170,14 +170,23 @@
       box-shadow: 0 0 15px rgba(0,255,255,0.4);
     }
 
-    .logo {
-      width: 80px;
-      height: auto;
+    .logo-wrapper {
+      width: 200px;       /* 固定寬度 */
+      height: 80px;       /* 固定高度，讓圖片對齊 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: white;
       border-radius: 10px;
       padding: 0.5em;
-      margin-right: 15px;
+      margin-right: 20px;
       flex-shrink: 0;
+    }
+
+    .logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
 
     .company-name {
@@ -186,8 +195,6 @@
       color: #00ffcc;
       text-shadow: 0 0 4px #00ffff;
     }
-
-
 
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
@@ -209,19 +216,24 @@
     
     <div class="company-list">
       <div class="company-card" onclick="startGame('SpinLaunch')">
-        <img src="https://upload.wikimedia.org/wikipedia/en/7/7b/SpinLaunch.svg" class="logo" alt="SpinLaunch">
+        <div class="logo-wrapper">
+          <img src="https://upload.wikimedia.org/wikipedia/en/7/7b/SpinLaunch.svg" class="logo" alt="SpinLaunch">
+        </div>
         <div class="company-name">旋轉發射公司</div>
       </div>
       <div class="company-card" onclick="startGame('SpaceX')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" class="logo" alt="SpaceX">
+        <div class="logo-wrapper">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" class="logo" alt="SpaceX">
+        </div>
         <div class="company-name">SpaceX</div>
       </div>
       <div class="company-card" onclick="startGame('Relativity')">
-        <img src="https://upload.wikimedia.org/wikipedia/zh/3/31/Relativity_Space_Logo.svg" class="logo" alt="Relativity">
+        <div class="logo-wrapper">
+          <img src="https://upload.wikimedia.org/wikipedia/zh/3/31/Relativity_Space_Logo.svg" class="logo" alt="Relativity">
+        </div>
         <div class="company-name">相對論太空公司</div>
       </div>
     </div>
-
 
 
   </div>
