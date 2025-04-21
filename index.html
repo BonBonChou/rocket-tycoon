@@ -30,13 +30,15 @@
     h4 {
       font-size: 1.4em;
       line-height: 1.6;
+
       margin-bottom: 1em;
       color: #00ffcc;
     }
     h5 {
       font-size: 1.2em;
       line-height: 1.2;
-      margin-bottom: 0em;
+      margin-top: 0em;
+      margin-bottom: 1em;
       color: #b5fff0;
     }
     .container {
@@ -89,6 +91,7 @@
     #ending-text {
       font-size: 1.6em;
       margin: 1em 0;
+      font-weight: bold;
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
       background-size: 400% 400%;
       -webkit-background-clip: text;
@@ -122,7 +125,7 @@
     .intro {
       text-align: left;
       margin-bottom: 0em;
-      /*background: rgba(255,255,255,0.05);*/
+      background: rgba(255,255,255,0.05);
       padding: 0.5em;
       border-radius: 10px;
     }
@@ -142,6 +145,70 @@
       line-height: 1.6;
       margin-bottom: 1em;
     }
+    
+    /* === 火箭公司選擇頁的網格排版樣式 === */
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 三個卡片橫排 */
+      gap: 30px;
+      justify-items: center;
+      margin-top: 30px;
+    }
+
+    .company-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 1em;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .company-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+    }
+
+    .logo-container {
+      height: 120px; /* 固定圖片顯示區的高度 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      max-height: 100%;
+      width: 100%;
+      object-fit: contain; /* 保持比例並讓圖片完整顯示 */
+      background: white;
+      border-radius: 10px;
+      padding: 0.5em;
+    }
+
+    .company-card button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: 2px solid #00bfff;
+      background-color: #000;
+      color: #00bfff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .company-card button:hover {
+      background-color: #00bfff;
+      color: #000;
+      transform: scale(1.05);
+    }
+    .company-name {
+      font-size: 1.3rem;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
 
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
@@ -160,18 +227,29 @@
       <p>🏆 <strong>目標與結局</strong><br>遊戲結束後，將根據你的總分給予不同的評語與稱號。你能成為登上火星的傳奇領航者嗎？</p>
     </div>
     <p>請選擇你要經營的火箭公司：</p>
-    <div>
-      <img src="https://upload.wikimedia.org/wikipedia/en/7/7b/SpinLaunch.svg" class="logo" alt="SpinLaunch">
-      <button onclick="startGame('SpinLaunch')">旋轉發射公司</button>
+    
+    <div class="company-grid">
+      <div class="company-card" onclick="startGame('SpinLaunch')">
+        <div class="logo-container">
+          <img src="https://upload.wikimedia.org/wikipedia/en/7/7b/SpinLaunch.svg" class="logo" alt="SpinLaunch">
+        </div>
+        <div class="company-name">旋轉發射公司</div>
+      </div>
+      <div class="company-card" onclick="startGame('SpaceX')">
+        <div class="logo-container">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" class="logo" alt="SpaceX">
+        </div>
+        <div class="company-name">SpaceX</div>
+      </div>
+      <div class="company-card" onclick="startGame('Relativity')">
+        <div class="logo-container">
+          <img src="https://upload.wikimedia.org/wikipedia/zh/3/31/Relativity_Space_Logo.svg" class="logo" alt="Relativity">
+        </div>
+        <div class="company-name">相對論太空公司</div>
+      </div>
     </div>
-    <div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" class="logo" alt="SpaceX">
-      <button onclick="startGame('SpaceX')">SpaceX</button>
-    </div>
-    <div>
-      <img src="https://upload.wikimedia.org/wikipedia/zh/3/31/Relativity_Space_Logo.svg" class="logo" alt="Relativity Space">
-      <button onclick="startGame('Relativity')">相對論太空公司</button>
-    </div>
+
+
   </div>
 
   <div id="game-screen" class="hidden">
