@@ -269,10 +269,10 @@
     <div class="all-endings">
       <h3>所有評語對照表：</h3>
       <ul>
-        <li>0~4 分：雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！</li>
-        <li>5~7 分：你已參與月球任務，是值得信賴的太空科技創業家！</li>
-        <li>8~9 分：太棒了！你帶領公司登上月球，成為月球探險隊長！</li>
-        <li>10 分：傳奇誕生！你領導人類登上火星，成為火星領航者！</li>
+        <li>0~6 分：雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！</li>
+        <li>7~9 分：你已參與月球任務，是值得信賴的太空科技創業家！</li>
+        <li>9~11 分：太棒了！你帶領公司登上月球，成為月球探險隊長！</li>
+        <li>12 分：傳奇誕生！你領導人類登上火星，成為火星領航者！</li>
       </ul>
     </div>
     <button onclick="location.reload()">重新開始</button>
@@ -410,10 +410,10 @@ const gameData = [
 ];
 
 const endings = [
-  { score: 4, text: "雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！" },
-  { score: 7, text: "你已參與月球任務，是值得信賴的太空科技創業家！" },
-  { score: 9, text: "太棒了！你帶領公司登上月球，成為月球探險隊長！" },
-  { score: 10, text: "傳奇誕生！你領導人類登上火星，成為火星領航者！" }
+  { score: 6, text: "雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！" },
+  { score: 9, text: "你已參與月球任務，是值得信賴的太空科技創業家！" },
+  { score: 11, text: "太棒了！你帶領公司登上月球，成為月球探險隊長！" },
+  { score: 12, text: "傳奇誕生！你領導人類登上火星，成為火星領航者！" }
 ];
 
 let currentRound = 0;
@@ -478,7 +478,7 @@ function showEnding() {
   document.getElementById("end-screen").classList.remove("hidden");
   let ending = endings.find(e => score <= e.score) || endings[endings.length - 1];
   document.getElementById("ending-text").textContent = ending.text;
-  document.getElementById("endscore-display").textContent = `你的總分：${score}/10`;
+  document.getElementById("endscore-display").textContent = `你的總分：${score}/12`;
 }
 </script>
 </body>
