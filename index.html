@@ -216,7 +216,28 @@ const gameData = [
     ]
   },
   {
-    title: "第 3 回合：第一次發射",
+    title: "第 3 回合：發射前準備",
+    scenario: "為了讓火箭能突破地球大氣層，發射時我們需要讓火箭達到下列哪個速度？",
+    choices: [
+      { text: "25倍音速", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "這樣的速度會讓火箭在半空墜毀...",
+      SpaceX: "這樣的速度會讓火箭在半空墜毀...",
+      Relativity: "這樣的速度會讓火箭在半空墜毀..."
+      } },
+      { text: "35倍音速", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "沒錯！達到逃逸速度（33倍音速）就能突破地球大氣層！",
+      SpaceX: "沒錯！達到逃逸速度（33倍音速）就能突破地球大氣層！",
+      Relativity: "沒錯！達到逃逸速度（33倍音速）就能突破地球大氣層！"
+      } },
+      { text: "45倍音速", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 }, comments: {
+      SpinLaunch: "速度雖然夠，但或許不需要這麼快。",
+      SpaceX: "速度雖然夠，但或許不需要這麼快。",
+      Relativity: "速度雖然夠，但或許不需要這麼快。"
+      } }
+    ]
+  },
+  {
+    title: "第 4 回合：第一次發射",
     scenario: "你即將進行首次火箭發射，面臨氣候不穩的情況。",
     choices: [
       { text: "延期發射，確保安全", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
@@ -237,7 +258,7 @@ const gameData = [
     ]
   },
   {
-    title: "第 4 回合：進軍月球任務",
+    title: "第 5 回合：進軍月球任務",
     scenario: "NASA 開放商業公司參與阿提米斯計畫。",
     choices: [
       { text: "積極爭取 NASA 合約", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
@@ -258,7 +279,7 @@ const gameData = [
     ]
   },
   {
-    title: "第 5 回合：火星移民的未來",
+    title: "第 6 回合：火星移民的未來",
     scenario: "火星殖民計畫啟動，公司是否參與？",
     choices: [
       { text: "全力投入火星載人任務", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 2 }, comments: {
