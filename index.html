@@ -79,7 +79,7 @@
     }
     .endscore-display {
       margin-top: 1em;
-      font-size: 1.5em;
+      font-size: 1.8em;
       color: #00ffcc;
     }
     .comment-display{
@@ -90,7 +90,7 @@
     }
     
     #ending-text {
-      font-size: 1.6em;
+      font-size: 2em;
       margin: 1em 0;
       font-weight: bold;
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
@@ -108,13 +108,23 @@
     
     .all-endings {
       margin-top: 1.6em;
-      font-size: 0.95em;
+      font-size: 1.2em;
       color: #eee;
       text-align: left;
       padding: 1em;
       background-color: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    #end-screen .all-endings h3 {
+      margin-top: 0em;
+      /*font-size: 0.95em; /* 修改"所有評語對照表"標題的字體大小 */
+    }
+
+    #end-screen .all-endings ul li {
+      text-align: justify;
+      /*font-size: 0.5em; /* 修改評語列表的字體大小 */
+    }
+
     img.logo {
       max-width: 150px;
       margin: 0.5em auto;
@@ -256,10 +266,11 @@
     <div class="all-endings">
       <h3>所有評語對照表：</h3>
       <ul>
-        <li>0~6 分：雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！</li>
-        <li>7~9 分：你已參與月球任務，是值得信賴的太空科技創業家！</li>
-        <li>9~11 分：太棒了！你帶領公司登上月球，成為月球探險隊長！</li>
-        <li>12 分：傳奇誕生！你領導人類登上火星，成為火星領航者！</li>
+        <li>0~8 分：雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！</li>
+        <li>9~12 分：你已參與月球任務，是值得信賴的太空科技創業家！</li>
+        <li>13~16 分：太棒了！你帶領公司登上月球，成為月球探險隊長！</li>
+        <li>17~21 分：傳奇誕生！你領導人類登上火星，成為火星領航者！</li>
+        <li>22 分：傳奇誕生！你領導人類登上系外行星，成為星際領航者！</li>
       </ul>
     </div>
     <button onclick="location.reload()">重新開始</button>
@@ -374,59 +385,160 @@ const gameData = [
     ]
   },
   {
-    title: "第 6-1 回合：進軍月球任務——阿提米絲一號",
-    scenario: "NASA 開放商業公司參與阿提米絲計畫，你需要了解阿提米斯一至四號任務的主要目標才能參加。阿提米斯一號任務的主要目標是...",
+    title: "第 6 回合：太空站的建造與維護模擬",
+    scenario: "在你決定參與 ISS 的接班計畫後，在太空中建造和維護太空站成為一大難題。你會怎麼訓練太空人?",
     choices: [
-      { text: "載人繞行月球", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "與 NASA 合作可提升可信度。",
-      SpaceX: "這是你的強項，值得爭取。",
-      Relativity: "雖競爭激烈，但有利品牌提升。"
+      { text: "搭乘飛機高速旋轉訓練重力變化", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "這類訓練主要用來讓太空人體驗短時間的失重感，時間太短，無法模擬長時間太空艙外的操作細節。",
+      SpaceX: "這類訓練主要用來讓太空人體驗短時間的失重感，時間太短，無法模擬長時間太空艙外的操作細節。",
+      Relativity: "這類訓練主要用來讓太空人體驗短時間的失重感，時間太短，無法模擬長時間太空艙外的操作細節。"
       } },
-      { text: "繞行月球", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "尚未成熟的市場，風險較高。",
-      SpaceX: "拓展新市場，但需高資源投入。",
-      Relativity: "能吸引創新投資人目光。"
+      { text: "在水中模擬太空行動", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "沒錯！NASA 的中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。",
+      SpaceX: "沒錯！NASA 的中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。",
+      Relativity: "沒錯！NASA 的中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。"
       } },
-      { text: "登月並與門戶太空站對接", effect: { SpinLaunch: 2, SpaceX: 1, Relativity: 1 }, comments: {
-      SpinLaunch: "穩健經營，集中資源發展核心技術。",
-      SpaceX: "與目前策略略有不同，但仍合理。",
-      Relativity: "有助穩定現金流。"
-      } },
-      { text: "載人登陸月球", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 }, comments: {
-      SpinLaunch: "尚未成熟的市場，風險較高。",
-      SpaceX: "拓展新市場，但需高資源投入。",
-      Relativity: "能吸引創新投資人目光。"
+      { text: "利用 VR 模擬太空艙內建設流程", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "雖然 VR 能輔助理解流程，但缺乏真實的物理阻力與失重感，不足以全面訓練艙外維修的技能。",
+      SpaceX: "雖然 VR 能輔助理解流程，但缺乏真實的物理阻力與失重感，不足以全面訓練艙外維修的技能。.",
+      Relativity: "雖然 VR 能輔助理解流程，但缺乏真實的物理阻力與失重感，不足以全面訓練艙外維修的技能。"
       } }
     ]
   },
   {
-    title: "第 7 回合：火星移民的未來",
-    scenario: "火星殖民計畫啟動，公司是否參與？",
+    title: "第 7-1 回合：進軍月球任務——阿提米絲一號",
+    scenario: "NASA 開放商業公司參與阿提米絲計畫，你需要了解阿提米絲一至四號任務的主要目標才能參加。阿提米絲一號任務的主要目標是...",
     choices: [
-      { text: "全力投入火星載人任務", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "超越技術極限，風險與成本極高...",
-      SpaceX: "實現夢想，順勢而為。",
-      Relativity: "壯志凌雲，挑戰極限。"
+      { text: "載人繞行月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你太心急了！這艘還沒有要載人。",
+      SpaceX: "你太心急了！這艘還沒有要載人。",
+      Relativity: "你太心急了！這艘還沒有要載人。"
       } },
-      { text: "提供火星任務的物流與資源運輸", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "專注你擅長的發射服務。",
-      SpaceX: "扮演重要供應角色，穩健成長。",
-      Relativity: "可結合3D列印優勢提供設備支援。"
+      { text: "繞行月球", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "你精準掌握阿提米絲計畫的開端——無人任務，奠定後續基礎。",
+      SpaceX: "你精準掌握阿提米絲計畫的開端——無人任務，奠定後續基礎。",
+      Relativity: "你精準掌握阿提米絲計畫的開端——無人任務，奠定後續基礎。"
       } },
-      { text: "觀望火星發展，專注近地任務", effect: { SpinLaunch: 2, SpaceX: 0, Relativity: 1 }, comments: {
-      SpinLaunch: "集中火力突破眼前挑戰。",
-      SpaceX: "可能錯失戰略先機...",
-      Relativity: "利於累積實力但有點保守。"
+      { text: "與門戶太空站對接並登月", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你太心急了！門戶太空站尚未建成，也沒有把握登月。",
+      SpaceX: "你太心急了！門戶太空站尚未建成，也沒有把握登月。",
+      Relativity: "你太心急了！門戶太空站尚未建成，也沒有把握登月。"
+      } },
+      { text: "載人登陸月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你太心急了，還沒有十足的把握登月。",
+      SpaceX: "你太心急了，還沒有十足的把握登月。",
+      Relativity: "你太心急了，還沒有十足的把握登月。"
+      } }
+    ]
+  },
+  {
+    title: "第 7-2 回合：進軍月球任務——阿提米絲二號",
+    scenario: "NASA 開放商業公司參與阿提米絲計畫，你需要了解阿提米絲一至四號任務的主要目標才能參加。阿提米絲二號任務的主要目標是...",
+    choices: [
+      { text: "載人繞行月球", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "你知道阿提米絲二號的重要突破，是人類時隔數十年再度接近月球。",
+      SpaceX: "你知道阿提米絲二號的重要突破，是人類時隔數十年再度接近月球。",
+      Relativity: "你知道阿提米絲二號的重要突破，是人類時隔數十年再度接近月球。"
+      } },
+      { text: "繞行月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你太保守了，該載人了！",
+      SpaceX: "你太保守了，該載人了！",
+      Relativity: "你太保守了，該載人了！"
+      } },
+      { text: "與門戶太空站對接並登月", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你太心急了！門戶太空站尚未建成，也沒有把握登月。",
+      SpaceX: "你太心急了！門戶太空站尚未建成，也沒有把握登月。",
+      Relativity: "你太心急了！門戶太空站尚未建成，也沒有把握登月。"
+      } },
+      { text: "載人登陸月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你太心急了，登月要再等等。",
+      SpaceX: "你太心急了，登月要再等等。",
+      Relativity: "你太心急了，登月要再等等。"
+      } }
+    ]
+  },
+  {
+    title: "第 7-3 回合：進軍月球任務——阿提米絲三號",
+    scenario: "NASA 開放商業公司參與阿提米絲計畫，你需要了解阿提米絲一至四號任務的主要目標才能參加。阿提米絲三號任務的主要目標是...",
+    choices: [
+      { text: "載人繞行月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你進度不夠，這次該登月了！",
+      SpaceX: "你進度不夠，這次該登月了！",
+      Relativity: "你進度不夠，這次該登月了！"
+      } },
+      { text: "繞行月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你落後了，早該載人了。",
+      SpaceX: "你落後了，早該載人了。",
+      Relativity: "你落後了，早該載人了。"
+      } },
+      { text: "與門戶太空站對接並登月", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你太心急了！門戶太空站尚未建成。",
+      SpaceX: "你太心急了！門戶太空站尚未建成。",
+      Relativity: "你太心急了！門戶太空站尚未建成。"
+      } },
+      { text: "載人登陸月球", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "你正確指出阿提米絲三號的核心目標——登陸月球重返月面！",
+      SpaceX: "你正確指出阿提米絲三號的核心目標——登陸月球重返月面！",
+      Relativity: "你正確指出阿提米絲三號的核心目標——登陸月球重返月面！"
+      } }
+    ]
+  },
+  {
+    title: "第 7-4 回合：進軍月球任務——阿提米絲四號",
+    scenario: "NASA 開放商業公司參與阿提米絲計畫，你需要了解阿提米絲一至四號任務的主要目標才能參加。阿提米絲四號任務的主要目標是...",
+    choices: [
+      { text: "載人繞行月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你進度不夠，這次應強化深空任務！",
+      SpaceX: "你進度不夠，這次應強化深空任務！",
+      Relativity: "你進度不夠，這次應強化深空任務！"
+      } },
+      { text: "繞行月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你落後太多了，這階段該整合太空站任務了！",
+      SpaceX: "你落後太多了，這階段該整合太空站任務了！",
+      Relativity: "你落後太多了，這階段該整合太空站任務了！"
+      } },
+      { text: "與門戶太空站對接並登月", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "你掌握阿提米絲四號的嶄新里程碑——與門戶太空站對接並登月，展現深空任務的整合能力！",
+      SpaceX: "你掌握阿提米絲四號的嶄新里程碑——與門戶太空站對接並登月，展現深空任務的整合能力！",
+      Relativity: "你掌握阿提米絲四號的嶄新里程碑——與門戶太空站對接並登月，展現深空任務的整合能力！"
+      } },
+      { text: "載人登陸月球", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      SpinLaunch: "你漏掉了太空站的重要整合任務。",
+      SpaceX: "你漏掉了太空站的重要整合任務。",
+      Relativity: "你漏掉了太空站的重要整合任務。"
+      } }
+    ]
+  },
+  {
+    title: "第 8 回合：未來的起點",
+    scenario: "在完成太空站建設、重返月球、累積一系列的經驗之後，NASA 推動這一切的終極目標逐漸清晰：人類將不再只居住在地球，而是前往火星，甚至更遠的星系。",
+    scenario: "未來的你，會怎麼布局？",
+    choices: [
+      { text: "將重心放在地球問題，暫緩太空探索", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 1 }, comments: {
+      SpinLaunch: "你選擇留在原地，卻錯過了通往太空新疆域的大門。錯過這波突破，人類可能永遠停留在地球。",
+      SpaceX: "你選擇留在原地，卻錯過了通往太空新疆域的大門。錯過這波突破，人類可能永遠停留在地球。",
+      Relativity: "你選擇留在原地，卻錯過了通往太空新疆域的大門。錯過這波突破，人類可能永遠停留在地球。"
+      } },
+      { text: "專注在地月系統，火星太遙不可及", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 1 }, comments: {
+      SpinLaunch: "你錯過了走向太空新疆域的關鍵時機，保守可能讓人類止步於近地軌道的舒適圈。",
+      SpaceX: "你錯過了走向太空新疆域的關鍵時機，保守可能讓人類止步於近地軌道的舒適圈。",
+      Relativity: "你錯過了走向太空新疆域的關鍵時機，保守可能讓人類止步於近地軌道的舒適圈。"
+      } },
+      { text: "開始布局火星基地，邁出星際移民的第一步", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
+      SpinLaunch: "你為人類開啟了太空新疆域的未來篇章。從月球到火星，這一刻，我們真正開始邁向星辰！",
+      SpaceX: "你為人類開啟了太空新疆域的未來篇章。從月球到火星，這一刻，我們真正開始邁向星辰！",
+      Relativity: "你為人類開啟了太空新疆域的未來篇章。從月球到火星，這一刻，我們真正開始邁向星辰！"
       } }
     ]
   }
 ];
 
 const endings = [
-  { score: 6, text: "雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！" },
-  { score: 9, text: "你已參與月球任務，是值得信賴的太空科技創業家！" },
-  { score: 11, text: "太棒了！你帶領公司登上月球，成為月球探險隊長！" },
-  { score: 12, text: "傳奇誕生！你領導人類登上火星，成為火星領航者！" }
+  { score: 8, text: "雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！" },
+  { score: 12, text: "你已參與月球任務，是值得信賴的太空科技創業家！" },
+  { score: 16, text: "太棒了！你帶領公司登上月球，成為月球探險隊長！" },
+  { score: 21, text: "傳奇誕生！你領導人類登上火星，成為火星領航者！" },
+  { score: 22, text: "傳奇誕生！你領導人類登上系外行星，成為星際領航者！" }
 ];
 
 let currentRound = 0;
@@ -491,7 +603,7 @@ function showEnding() {
   document.getElementById("end-screen").classList.remove("hidden");
   let ending = endings.find(e => score <= e.score) || endings[endings.length - 1];
   document.getElementById("ending-text").textContent = ending.text;
-  document.getElementById("endscore-display").textContent = `你的總分：${score}/12`;
+  document.getElementById("endscore-display").textContent = `你的總分：${score}/22`;
 }
 </script>
 </body>
