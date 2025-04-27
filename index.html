@@ -157,6 +157,23 @@
       margin-bottom: 1em;
     }
     
+    /* === 科學新知頁的網格排版樣式 === */
+    #info-screen {
+      text-align: center;
+      padding: 30px;
+    }
+
+    #info-title {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    #info-text {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    
     /* === 火箭公司選擇頁的網格排版樣式 === */
     .company-list {
       display: flex;
@@ -220,7 +237,7 @@
       <h5>開拓屬於自己的宇宙疆域吧！</h5>
       <h3>🔍 遊戲說明</h3>
       <p>🌌 <strong>背景故事</strong><br>你是一家新創火箭公司的負責人，正準備踏入太空產業的競爭舞台。從研發火箭、第一次發射火箭，到參與登月與火星任務，你的每個選擇都將影響公司的命運！</p>
-      <p>🧠 <strong>玩法簡介</strong><br>遊戲總共11回合（第7回合包含4個小回合）。每回合會出現一個情境，讓你從多個選項中擇一。不同的火箭公司對每個選擇的成效不同，將影響你的最終得分。</p>
+      <p>🧠 <strong>玩法簡介</strong><br>遊戲總共11回合（第7回合包含4個小回合）。每回合會出現一個情境，讓你從三個選項中擇一。不同的火箭公司對每個選擇的成效不同，將影響你的最終得分。</p>
       <p>🏆 <strong>目標與結局</strong><br>遊戲結束後，將根據你的總分給予不同的評語與稱號。你能成為建立人類首個系外基地的銀河開拓者嗎？</p>
     </div>
     <p>請選擇你要經營的火箭公司：</p>
@@ -245,10 +262,17 @@
         <div class="company-name">相對論太空公司</div>
       </div>
     </div>
-
-
+  </div>
+  
+  <!-- 科學新知頁 -->
+  <div id="info-screen" class="hidden">
+    <h2 id="info-title"></h2>
+    <p id="info-text" style="font-size: 1.2em; line-height: 1.6;text-align: justify;"></p>
+    <button onclick="goToNextRoundAfterInfo()">下一題</button>
   </div>
 
+
+  <!-- 問題頁 -->
   <div id="game-screen" class="hidden">
     <h2 id="round-title"></h2>
     <p style="text-align: justify;" id="scenario"></p>
@@ -256,9 +280,9 @@
     <div id="round-comment" class="comment-display hidden"></div>
     <div id="round-score" class="score-display2 hidden"></div>
     
-    <button id="next-btn" class="hidden" onclick="nextRound()">下一題</button>
+    <button id="next-btn" class="hidden" onclick="nextRound()">下一頁</button>
   </div>
-
+  <!-- 結算頁 -->
   <div id="end-screen" class="hidden">
     <h2>🌟 遊戲結束！</h2>
     <p id="ending-text"></p>
@@ -304,7 +328,7 @@ const gameData = [
     title: "第 2 回合：火箭設計",
     scenario: "你準備設計公司的第一款火箭...",
     choices: [
-      { text: "使用傳統液體燃料火箭", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 1 }, comments: {
+      { text: "打造可重複使用的火箭", effect: { SpinLaunch: 0, SpaceX: 2, Relativity: 1 }, comments: {
       SpinLaunch: "這與你公司的技術不太吻合...",
       SpaceX: "延續既有成功經驗，是穩定選擇。",
       Relativity: "雖然成熟，但較難展現創新。"
@@ -314,7 +338,7 @@ const gameData = [
       SpaceX: "技術太前衛，不太符合現階段策略...",
       Relativity: "不是公司主要研發方向，或許未來可以嘗試..."
       } },
-      { text: "用3D列印打造火箭結構", effect: { SpinLaunch: 0, SpaceX: 1, Relativity: 2 }, comments: {
+      { text: "用 3D 列印打造火箭結構", effect: { SpinLaunch: 0, SpaceX: 1, Relativity: 2 }, comments: {
       SpinLaunch: "創新但不一定與你公司技術結合...",
       SpaceX: "具有潛力，但仍需時間導入。",
       Relativity: "正是你主打的製造優勢！"
@@ -325,17 +349,17 @@ const gameData = [
     title: "第 3 回合：第一次發射",
     scenario: "你即將進行首次火箭發射，為了讓火箭能突破地球大氣層，發射時我們需要讓火箭達到下列哪個速度？",
     choices: [
-      { text: "25倍音速", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
+      { text: "15倍音速", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
       SpinLaunch: "這樣的速度會讓火箭在半空墜毀...",
       SpaceX: "這樣的速度會讓火箭在半空墜毀...",
       Relativity: "這樣的速度會讓火箭在半空墜毀..."
       } },
       { text: "35倍音速", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "沒錯！達到逃逸速度（33倍音速）就能突破地球大氣層！",
-      SpaceX: "沒錯！達到逃逸速度（33倍音速）就能突破地球大氣層！",
-      Relativity: "沒錯！達到逃逸速度（33倍音速）就能突破地球大氣層！"
+      SpinLaunch: "沒錯！達到逃逸速度就能突破地球大氣層！",
+      SpaceX: "沒錯！達到逃逸速度就能突破地球大氣層！",
+      Relativity: "沒錯！達到逃逸速度就能突破地球大氣層！"
       } },
-      { text: "45倍音速", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 }, comments: {
+      { text: "55倍音速", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 2 }, comments: {
       SpinLaunch: "速度雖然夠，但或許不需要這麼快。",
       SpaceX: "速度雖然夠，但或許不需要這麼快。",
       Relativity: "速度雖然夠，但或許不需要這麼快。"
@@ -347,9 +371,9 @@ const gameData = [
     scenario: "NASA 突然邀請你提前三個月參與一項月球任務，你的火箭建造計畫還來得及嗎？",
     choices: [
       { text: "啟用全自動 3D 列印工廠，加班趕工", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "你靈活應變，3D 列印在數週內就造出原本需數年才能造出的火箭！",
-      SpaceX: "你靈活應變，3D 列印在數週內就造出原本需數年才能造出的火箭！",
-      Relativity: "你靈活應變，3D 列印在數週內就造出原本需數年才能造出的火箭！"
+      SpinLaunch: "你靈活應變，3D 列印成功讓你在期限內造出火箭！",
+      SpaceX: "你靈活應變，3D 列印成功讓你在期限內造出火箭！",
+      Relativity: "你靈活應變，3D 列印成功讓你在期限內造出火箭！"
       } },
       { text: "向 NASA 請求延期，希望多爭取幾個月", effect: { SpinLaunch: 1, SpaceX: 1, Relativity: 1 }, comments: {
       SpinLaunch: "NASA 勉強同意延期，但其他公司搶先一步。",
@@ -394,9 +418,9 @@ const gameData = [
       Relativity: "這類訓練主要用來讓太空人體驗短時間的失重感，時間太短，無法模擬長時間太空艙外的操作細節。"
       } },
       { text: "在水中模擬太空行動", effect: { SpinLaunch: 2, SpaceX: 2, Relativity: 2 }, comments: {
-      SpinLaunch: "沒錯！NASA 的中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。",
-      SpaceX: "沒錯！NASA 的中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。",
-      Relativity: "沒錯！NASA 的中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。"
+      SpinLaunch: "沒錯！中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。",
+      SpaceX: "沒錯！中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。",
+      Relativity: "沒錯！中性浮力實驗室能有效模擬太空的失重狀態，是訓練太空艙外施工的關鍵場域。"
       } },
       { text: "利用 VR 模擬太空艙內建設流程", effect: { SpinLaunch: 0, SpaceX: 0, Relativity: 0 }, comments: {
       SpinLaunch: "雖然 VR 能輔助理解流程，但缺乏真實的物理阻力與失重感，不足以全面訓練艙外維修的技能。",
@@ -533,6 +557,41 @@ const gameData = [
   }
 ];
 
+/*const infoScreenData = [
+  null,  // 第 1 題後面沒有新知
+  { title: "旋轉發射與3D列印", text: "新創公司採用創新技術如旋轉發射與3D列印，能加快火箭製造流程。" },
+  { title: "什麼是逃逸速度？", text: "要脫離地球引力，火箭需達到約11.2公里/秒，也就是約33倍音速。" },
+  { title: "3D列印建造火箭", text: "相對論太空公司利用3D列印將火箭建造時間從數年縮短至數週。" },
+  { title: "新太空站時代", text: "公理太空站將接替ISS，並由商業公司主導建設，邁向太空商業化新時代。" },
+  { title: "中性浮力實驗室", text: "NASA 的中性浮力實驗室模擬失重環境，供太空人訓練太空艙外維修技能。" },
+  { title: "阿提米絲一號", text: "無人繞行月球任務，測試太空船與系統，為未來載人任務鋪路。" },
+  { title: "阿提米絲二號", text: "人類自1972年後首度繞行月球，這是重返月球的重要一步。" },
+  { title: "阿提米絲三號", text: "本任務將首次載人登陸月球南極，是新一輪月面探勘的起點。" },
+  { title: "阿提米絲四號", text: "首次與月球軌道太空站 Gateway 對接，象徵深空整合任務的開始。" },
+  { title: "火星與系外星球", text: "登月只是開端，人類的目標是火星、甚至是銀河深處的星際基地。" }
+];*/
+const infoScreenData = [
+  null,  // 第 1 題後面沒有新知
+  {
+    title: "你知道嗎...",
+    text: {
+      SpinLaunch: "旋轉發射公司採用創新技術，利用 169 英尺高的次軌道加速器讓火箭透過旋轉來加速，節省昂貴的燃料並避免汙染。為了減少能量不必要的耗損，真空密封離心機將加速器內部抽成真空，排除旋轉過程中引起摩擦的空氣微粒，並用最堅固、最輕的材料之一——碳纖維，來製造旋轉臂和火箭。",
+      SpaceX: "SpaceX 是首家打造可重複使用火箭的公司。然而，其著陸非常困難。在燃料幾乎耗盡的情況下，降落不能出現任何失誤，否則火箭便會墜毀而無法回收。",
+      Relativity: "相對論太空公司使用世界最大的 3D 列印機生產火箭的部分結構，公司的第一艘火箭「人族一號」有近 85% 都是透過 3D 列印打造。"
+    }
+  },
+  { title: "你知道嗎...", text: "要脫離地球引力，火箭需達到約 11.2 公里/秒，也就是約 33 倍音速，這個速度也被稱作「第二宇宙速度」。而第一宇宙速度是指物體能繞地球作圓周運動所需的最小速度，大約 7.9 公里/秒（約 23 倍音速）。一共有四個宇宙速度。第三宇宙速度則是脫離太陽的引力，飛出太陽系所需的最小速度，大約 16.7 公里/秒（約 49 倍音速）。最後，第四宇宙速度是脫離銀河系的引力，飛出銀河系所需的最小速度，大約 525 公里/秒以上（約 1544 倍音速）。" },
+  { title: "你知道嗎...", text: "3D 列印技術不只降低了火箭建造的成本和複雜性，更將原本需要數年的建造時間縮短至數週。" },
+  { title: "你知道嗎...", text: "公理太空站模組將逐步搭接在 ISS 上，搭接完成後 ISS 將脫離軌道墜毀至大海。由於醫學、製造業、生物組織、細胞、光纖等研究在微重力環境下有新的突破，使得許多公司也想在太空建立屬於自己的太空站。" },
+  { title: "你知道嗎...", text: "NASA 的中性浮力實驗室模擬失重環境，訓練太空人如何建造和維護太空站。此外，太空碎片、微隕石、太陽輻射、極端溫度等使太空漫步極度危險，突發狀況下，平常訓練時的肌肉記憶所做出的動作就變得至關重要。" },
+  { title: "你知道嗎...", text: "無人繞行月球任務，測試太空船與系統，為未來載人任務鋪路。" },
+  { title: "你知道嗎...", text: "人類自1972年後首度繞行月球，這是重返月球的重要一步。" },
+  { title: "你知道嗎...", text: "本任務將首次載人登陸月球南極，是新一輪月面探勘的起點。" },
+  { title: "你知道嗎...", text: "首次與月球軌道太空站 Gateway 對接，象徵深空整合任務的開始。" },
+  { title: "你知道嗎...", text: "登月只是開端，人類的目標是火星、甚至是銀河深處的星際基地。" }
+];
+
+
 const endings = [
   { score: 8, text: "雖然遇到許多挑戰，但你仍努力不懈，是未來的星星！" },
   { score: 12, text: "你已參與月球任務，是值得信賴的太空科技創業家！" },
@@ -590,6 +649,23 @@ function loadRound() {
 }
 
 function nextRound() {
+  const info = infoScreenData[currentRound];
+  if (info) {
+    showInfoScreen(info.title, info.text);
+  } else {
+    currentRound++;
+    if (currentRound >= gameData.length) {
+      showEnding();
+    } else {
+      loadRound();
+    }
+  }
+}
+
+
+function goToNextRoundAfterInfo() {
+  document.getElementById("info-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.remove("hidden");
   currentRound++;
   if (currentRound >= gameData.length) {
     showEnding();
@@ -597,6 +673,23 @@ function nextRound() {
     loadRound();
   }
 }
+
+function showInfoScreen(title, text) {
+  // 隱藏題目區與其他頁面
+  document.getElementById("game-screen").classList.add("hidden");
+  document.getElementById("info-screen").classList.remove("hidden");
+
+  // 設定內容
+  document.getElementById("info-title").textContent = title;
+  //document.getElementById("info-text").textContent = text;
+  // 如果 text 是物件，代表是公司對應內容
+  if (typeof text === "object" && text !== null) {
+    document.getElementById("info-text").textContent = text[company] || "（這家公司暫無對應內容）";
+  } else {
+    document.getElementById("info-text").textContent = text;
+  }
+}
+
 
 function showEnding() {
   document.getElementById("game-screen").classList.add("hidden");
