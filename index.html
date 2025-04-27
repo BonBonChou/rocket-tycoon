@@ -92,7 +92,7 @@
     #ending-text {
       font-size: 2em;
       margin: 1em 0;
-      font-weight: bold;
+      text-align: justify;
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
       background-size: 400% 400%;
       -webkit-background-clip: text;
@@ -100,8 +100,14 @@
       animation: rainbow 2s ease infinite;
     }
     
-    #h6 {
-      font-size: 2em;
+    h6 {
+      font-size: 1.5em;
+      margin: 1em 0;
+      text-align: justify;
+      color: #00ffcc;
+    }
+    h7 {
+      font-size: 1.8em;
       margin: 1em 0;
       font-weight: bold;
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
@@ -295,12 +301,13 @@
   </div>
   <!-- 結尾頁 -->
   <div id="final-message-screen" class="hidden">
-    <h2>✨ 拓展太空疆域！</h2>
-    <p id="final-message-text" style="font-size: 1.5em; line-height: 1.6; margin-top: 1em;">
+    <h6>登月只是起點。從火星到系外行星，人類將穿越無盡星海，在銀河深處築起第一座星際基地。</h6>
+    <h7>未來，不再只屬於地球，而屬於整個宇宙！</h7>
+    <!--<p id="final-message-text" style="font-size: 1.5em; line-height: 1.6; margin-top: 1em;">
       每一次選擇，都是一次啟航。<br>
       登月、火星、系外星球……未來疆域，由你開拓。<br><br>
       謝謝你的挑戰，未來宇宙將因你而不同！
-    </p>
+    </p>-->
     <button onclick="goToEnding()">下一頁</button>
   </div>
 
@@ -610,8 +617,7 @@ const infoScreenData = [
   { title: "你知道嗎...", text: "阿提米絲 2 號是該計畫的第一次載人飛行測試，預計在 2026 年 4 月執行，共派遣四名太空人。機組人員將駕駛著獵戶座太空船繞月飛行，進一步測試其性能" },
   { title: "你知道嗎...", text: "阿提米絲 3 號是該計畫的第一次載人登月，預計在 2027 年年中執行，共派遣四名太空人，其中兩名降落在月球表面，在月球南極進行太空漫步和各種科學實驗，並在最後搭乘獵戶座太空船返回地球。" },
   { title: "你知道嗎...", text: "阿提米絲 4 號是該計畫的第二次載人登月，並與歐洲太空總署（ ESA ）合作進行登月任務，預計在 2028 年 9 月執行，共派遣四名太空人與預計於 2027 年發射的門戶太空站進行對接。門戶太空站是 NASA 、國際太空機構與民營公司共同研議合作的項目。作為一個中繼站和科學站，太空人將在其工作和生活。如同阿提米絲 3 號任務，其中兩名太空人將降落在月球南極。" },
-  { title: "你知道嗎...", text: "阿提米絲計畫的長期目標是在月球上建立一個永久基地，並促進人類前往火星的任務。" },
-  { title: "登月只是起點。從火星到系外行星，人類將穿越無盡星海，在銀河深處築起第一座星際基地。未來，不再只屬於地球，而屬於整個宇宙。"/*, text: "登月只是起點。從火星到系外行星，人類將穿越無盡星海，在銀河深處築起第一座星際基地。未來，不再只屬於地球，而屬於整個宇宙。"*/ }
+  { title: "你知道嗎...", text: "阿提米絲計畫的長期目標是在月球上建立一個永久基地，並促進人類前往火星的任務。" }
 ];
 
 
