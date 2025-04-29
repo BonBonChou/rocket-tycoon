@@ -258,7 +258,7 @@
       <h5>開拓屬於自己的宇宙疆域吧！</h5>
       <h3>🔍 遊戲說明</h3>
       <p>🌌 <strong>背景故事</strong><br>你是一家新創火箭公司的負責人，正準備踏入太空產業的競爭舞台。從研發火箭、第一次發射火箭，到參與登月與火星任務，你的每個選擇都將影響公司的命運！</p>
-      <p>🧠 <strong>玩法簡介</strong><br>遊戲總共11回合（第7回合包含4個小回合）。每回合會出現一個情境，讓你從三個選項中擇一。不同的火箭公司對每個選擇的成效不同，將影響你的最終得分。</p>
+      <p>🧠 <strong>玩法簡介</strong><br>遊戲總共8回合（第7回合包含4個小回合）。每回合會出現一個情境，讓你從三個選項中擇一。不同的火箭公司對每個選擇的成效不同，將影響你的最終得分。</p>
       <p>🏆 <strong>目標與結局</strong><br>遊戲結束後，將根據你的總分給予不同的評語與稱號。你能成為建立人類首個系外基地的銀河開拓者嗎？</p>
     </div>
     <p>請選擇你要經營的火箭公司：</p>
@@ -289,6 +289,7 @@
   <div id="info-screen" class="hidden">
     <h2 id="info-title"></h2>
     <p id="info-text" style="font-size: 1.2em; line-height: 1.6;text-align: justify;"></p>
+    <div id="info-link" class="hidden" style="margin-top: 1em;"></div>
     <button onclick="goToNextRoundAfterInfo()">下一頁</button>
   </div>
 
@@ -585,19 +586,6 @@ const gameData = [
   }
 ];
 
-/*const infoScreenData = [
-  null,  // 第 1 題後面沒有新知
-  { title: "旋轉發射與3D列印", text: "新創公司採用創新技術如旋轉發射與3D列印，能加快火箭製造流程。" },
-  { title: "什麼是逃逸速度？", text: "要脫離地球引力，火箭需達到約11.2公里/秒，也就是約33倍音速。" },
-  { title: "3D列印建造火箭", text: "相對論太空公司利用3D列印將火箭建造時間從數年縮短至數週。" },
-  { title: "新太空站時代", text: "公理太空站將接替ISS，並由商業公司主導建設，邁向太空商業化新時代。" },
-  { title: "中性浮力實驗室", text: "NASA 的中性浮力實驗室模擬失重環境，供太空人訓練太空艙外維修技能。" },
-  { title: "阿提米絲一號", text: "無人繞行月球任務，測試太空船與系統，為未來載人任務鋪路。" },
-  { title: "阿提米絲二號", text: "人類自1972年後首度繞行月球，這是重返月球的重要一步。" },
-  { title: "阿提米絲三號", text: "本任務將首次載人登陸月球南極，是新一輪月面探勘的起點。" },
-  { title: "阿提米絲四號", text: "首次與月球軌道太空站 Gateway 對接，象徵深空整合任務的開始。" },
-  { title: "火星與系外星球", text: "登月只是開端，人類的目標是火星、甚至是銀河深處的星際基地。" }
-];*/
 const infoScreenData = [
   //null,  // 第 1 題後面沒有新知
   {
@@ -606,6 +594,11 @@ const infoScreenData = [
       SpinLaunch: "現在太空計畫除了 NASA 主導外，也開放許多民營公司、新創公司參加，旋轉發射公司就是其中之一。該公司於 2014 年由 Jonathan Yaney 創立，致力於開發以離心力為基礎的動能發射系統，目標是提供低成本、環保且高頻率的太空發射解決方案。",
       SpaceX: "現在太空計畫除了 NASA 主導外，也開放許多民營公司、新創公司參加，SpaceX 就是其中之一。SpaceX 由Elon Musk 於 2002 年創立，致力於降低太空運輸成本，實現人類在火星上的殖民夢想。",
       Relativity: "現在太空計畫除了 NASA 主導外，也開放許多民營公司、新創公司參加，相對論太空公司就是其中之一。該公司於 2015 年由 Tim Ellis 和 Jordan Noone 創立，目標是透過 3D 列印技術和人工智慧，簡化火箭製造流程，實現快速且成本效益高的太空發射。該公司計畫在未來於火星上建立工業基地，支持人類的星際移民。"
+    },
+    link: {
+      SpinLaunch: { text: "SpinLaunch 官網", url: "https://www.spinlaunch.com/" },
+      SpaceX: { text: "SpaceX 官網", url: "https://www.spacex.com/" },
+      Relativity: { text: "Relativity Space 官網", url: "https://www.relativityspace.com/" }
     }
   },
   {
@@ -614,17 +607,73 @@ const infoScreenData = [
       SpinLaunch: "旋轉發射公司採用創新技術，利用 169 英尺高的次軌道加速器讓火箭透過旋轉來加速，節省昂貴的燃料並避免汙染。為了減少能量不必要的耗損，真空密封離心機將加速器內部抽成真空，排除旋轉過程中引起摩擦的空氣微粒，並用最堅固、最輕的材料之一——碳纖維，來製造旋轉臂和火箭。",
       SpaceX: "SpaceX 是首家打造可重複使用火箭的公司。然而，其著陸非常困難。在燃料幾乎耗盡的情況下，降落不能出現任何失誤，否則火箭便會墜毀而無法回收。 SpaceX 在 2015 年 12 月成功將獵鷹 9 號火箭的一級助推器垂直著陸並回收，對航太工業具有劃時代的意義。",
       Relativity: "相對論太空公司擁有世界最大的金屬 3D 列印機之一 Stargate ，並利用它來生產火箭的部分結構，該公司的第一艘火箭「人族一號」有近 85% 都是透過 3D 列印打造，是世界上首枚主要由 3D 列印製成的火箭。"
+    },
+    link: {
+      SpinLaunch: { text: "SpinLaunch 官網", url: "https://www.spinlaunch.com/" },
+      SpaceX: { text: "SpaceX 官網", url: "https://www.spacex.com/" },
+      Relativity: { text: "Relativity Space 官網", url: "https://www.relativityspace.com/" }
     }
   },
-  { title: "你知道嗎...", text: "要脫離地球引力，火箭需達到「逃逸速度」，約 11.2 公里/秒，也就是約 33 倍音速，這個速度也被稱作「第二宇宙速度」。而第一宇宙速度是指物體能繞地球作圓周運動所需的最小速度，大約 7.9 公里/秒（約 23 倍音速）。一共有四個宇宙速度。第三宇宙速度則是脫離太陽的引力，飛出太陽系所需的最小速度，大約 16.7 公里/秒（約 49 倍音速）。最後，第四宇宙速度是脫離銀河系的引力，飛出銀河系所需的最小速度，大約 525 公里/秒以上（約 1544 倍音速）。" },
-  { title: "你知道嗎...", text: "3D 列印技術不只降低了火箭製造的成本和複雜性，更將原本需要數年的建造時間縮短至數週。且未來若能在太空或月球、火星上就地列印工具或零件，將大幅減少對地球的依賴，提高太空任務的自給自足能力。" },
-  { title: "你知道嗎...", text: "公理太空站模組將逐步搭接在 ISS 上，搭接完成後 ISS 將脫離軌道墜毀至大海。由於醫學、製造業、生物組織、細胞、光纖等研究在微重力環境下有新的突破，使得許多公司也想在太空建立屬於自己的太空站。" },
-  { title: "你知道嗎...", text: "NASA 的中性浮力實驗室是個巨大的泳池，訓練太空人模擬失重環境下如何建造和維護太空站。此外，太空碎片、微隕石、太陽輻射、極端溫度等使太空漫步極度危險。突發狀況下，平常訓練時的肌肉記憶所做出的動作就變得至關重要。" },
-  { title: "你知道嗎...", text: "阿提米絲計畫是繼 1972 年的阿波羅 17 號任務以來，首個再次登月並建立月球基地的計畫。該計畫以希臘神話中太陽神阿波羅的孿生姐姐，同時也是月亮女神的阿提米絲命名。阿提米絲 1 號是該計畫的無載人試驗飛行，以測試太空發射系統（ SLS ）火箭、獵戶座太空船。 SLS 火箭載著獵戶座太空船在 2022 年 11 月成功發射。獵戶座太空船內搭載機器人和人體模型，經過約一個月的繞月飛行後，同年 12 月 11 日安全降落在太平洋。" },
-  { title: "你知道嗎...", text: "阿提米絲 2 號是該計畫的第一次載人飛行測試，預計在 2026 年 4 月執行，共派遣四名太空人。機組人員將駕駛著獵戶座太空船繞月飛行，進一步測試其性能。" },
-  { title: "你知道嗎...", text: "阿提米絲 3 號是該計畫的第一次載人登月，預計在 2027 年年中執行，共派遣四名太空人，其中兩名降落在月球表面，在月球南極進行太空漫步和各種科學實驗，並在最後搭乘獵戶座太空船返回地球。" },
-  { title: "你知道嗎...", text: "阿提米絲 4 號是該計畫的第二次載人登月，並與歐洲太空總署（ ESA ）合作進行登月任務，預計在 2028 年 9 月執行，共派遣四名太空人，負責與預計於 2027 年發射的門戶太空站進行對接。門戶太空站是 NASA 、國際太空機構與民營公司共同研議合作的項目。作為一個中繼站和科學站，太空人將在其工作和生活。如同阿提米絲 3 號任務，其中兩名太空人將降落在月球南極。" },
-  { title: "你知道嗎...", text: "阿提米絲計畫的長期目標是在月球上建立一個永久基地，並促進人類前往火星的任務。所以..." }
+  {
+  	title: "你知道嗎...",
+  	text: "要脫離地球引力，火箭需達到「逃逸速度」，約 11.2 公里/秒，也就是約 33 倍音速，這個速度也被稱作「第二宇宙速度」。而第一宇宙速度是指物體能繞地球作圓周運動所需的最小速度，大約 7.9 公里/秒（約 23 倍音速）。一共有四個宇宙速度。第三宇宙速度則是脫離太陽的引力，飛出太陽系所需的最小速度，大約 16.7 公里/秒（約 49 倍音速）。最後，第四宇宙速度是脫離銀河系的引力，飛出銀河系所需的最小速度，大約 525 公里/秒以上（約 1544 倍音速）。而目前人類最快的探測器「旅行者 1 號」僅能達到第三宇宙速度，約 17 公里/秒。",
+  	link: { text: "維基百科", url: "https://zh.wikipedia.org/wiki/%E5%AE%87%E5%AE%99%E9%80%9F%E5%BA%A6"}
+  },
+  {
+  	title: "你知道嗎...",
+    text: "3D 列印技術不只降低了火箭製造的成本和複雜性，更將原本需要數年的建造時間縮短至數週。且未來若能在太空或月球、火星上就地列印工具或零件，將大幅減少對地球的依賴，提高太空任務的自給自足能力。"
+  },
+  {
+  	title: "你知道嗎...",
+    text: "公理太空站模組將逐步搭接在 ISS 上，搭接完成後 ISS 將脫離軌道墜毀至大海。由於醫學、製造業、生物組織、細胞、光纖等研究在微重力環境下有新的突破，使得許多公司也想在太空建立屬於自己的太空站。",
+  	link: [
+    	{ text: "公理太空公司官網", url: "https://www.axiomspace.com/axiom-station"},
+      { text: "NASA", url: "https://www.nasa.gov/humans-in-space/commercial-space/leo-economy/nasa-axiom-space-change-assembly-order-of-commercial-space-station/"}
+    ]
+  },  
+  {
+  	title: "你知道嗎...",
+    text: "NASA 的中性浮力實驗室是個巨大的泳池，訓練太空人模擬失重環境下如何建造和維護太空站。此外，太空碎片、微隕石、太陽輻射、極端溫度等使太空漫步極度危險。突發狀況下，平常訓練時的肌肉記憶所做出的動作就變得至關重要。",
+    link: { text: "NASA", url: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/"}
+  },
+  {
+  	title: "你知道嗎...",
+    text: "阿提米絲計畫是繼 1972 年的阿波羅 17 號任務以來，首個再次登月並建立月球基地的計畫。該計畫以希臘神話中太陽神阿波羅的孿生姐姐，同時也是月亮女神的阿提米絲命名。阿提米絲 1 號是該計畫的無載人試驗飛行，以測試太空發射系統（ SLS ）火箭、獵戶座太空船。 SLS 火箭載著獵戶座太空船在 2022 年 11 月成功發射。獵戶座太空船內搭載機器人和人體模型，經過約一個月的繞月飛行後，同年 12 月 11 日安全降落在太平洋。",
+    link: [
+      { text: "NASA", url: "https://www.nasa.gov/reference/artemis-i-2/"},
+      { text: "維基百科", url: "https://zh.wikipedia.org/wiki/%E9%98%BF%E6%8F%90%E7%B1%B3%E7%B5%B21%E8%99%9F"}
+     ]
+  },
+  {
+  	title: "你知道嗎...",
+    text: "阿提米絲 2 號是該計畫的第一次載人飛行測試，預計在 2026 年 4 月執行，共派遣四名太空人。機組人員將駕駛著獵戶座太空船繞月飛行，進一步測試其性能。",
+    link: [
+      { text: "NASA", url: "https://www.nasa.gov/reference/artemis-ii/"},
+      { text: "維基百科", url: "https://zh.wikipedia.org/wiki/%E9%98%BF%E6%8F%90%E7%B1%B3%E7%B5%B22%E8%99%9F"}
+    ]
+  },
+  {
+  	title: "你知道嗎...",
+    text: "阿提米絲 3 號是該計畫的第一次載人登月，預計在 2027 年年中執行，共派遣四名太空人，其中兩名降落在月球表面，在月球南極進行太空漫步和各種科學實驗，並在最後搭乘獵戶座太空船返回地球。",
+    link: [
+      { text: "NASA", url: "https://www.nasa.gov/reference/artemis-iii/"},
+      { text: "維基百科", url: "https://zh.wikipedia.org/wiki/%E9%98%BF%E6%8F%90%E7%B1%B3%E7%B5%B23%E8%99%9F"}
+    ]
+  },
+  {
+  	title: "你知道嗎...",
+    text: "阿提米絲 4 號是該計畫的第二次載人登月，並與歐洲太空總署（ ESA ）合作進行登月任務，預計在 2028 年 9 月執行，共派遣四名太空人，負責與預計於 2027 年發射的門戶太空站進行對接。門戶太空站是 NASA 、國際太空機構與民營公司共同研議合作的項目。作為一個中繼站和科學站，太空人將在其工作和生活。如同阿提米絲 3 號任務，其中兩名太空人將降落在月球南極。",
+    link: [
+      { text: "阿提米絲 4 號-NASA", url: "https://www.nasa.gov/missions/artemis/artemis-iv-gateway-gadget-fuels-deep-space-dining/"},
+      { text: "阿提米絲 4 號-維基百科", url: "https://zh.wikipedia.org/wiki/%E9%98%BF%E6%8F%90%E7%B1%B3%E7%B5%B24%E8%99%9F"},
+      { text: "門戶太空站-NASA", url: "https://www.nasa.gov/mission/gateway/"},
+      { text: "門戶太空站-維基百科", url: "https://zh.wikipedia.org/wiki/%E6%9C%88%E7%90%83%E9%97%A8%E6%88%B7"}
+    ]
+  },
+  {
+  	title: "你知道嗎...",
+    text: "阿提米絲計畫的長期目標是在月球上建立一個永久基地，並促進人類前往火星的任務。所以..."
+  }
 ];
 
 
@@ -734,8 +783,35 @@ function showInfoScreen(title, text) {
   } else {
     document.getElementById("info-text").textContent = text;
   }
-}
+  
+  const info = infoScreenData[currentRound];
+  const link = info && info.link;
+  const linkArea = document.getElementById("info-link");
+  if (link) {
+    linkArea.innerHTML = "<p>相關資料</p>";
 
+    // 情況 1：多個網址（所有公司共用）
+    if (Array.isArray(link)) {
+      link.forEach(l => {
+        linkArea.innerHTML += `<a href="${l.url}" target="_blank" style="display:block; color:#00ccff;">${l.text}</a>`;
+      });
+    }
+    // 情況 2：公司分別有自己的單一網址
+    else if (typeof link === "object" && link[company]) {
+      const l = link[company];
+      linkArea.innerHTML += `<a href="${l.url}" target="_blank" style="display:block; color:#00ccff;">${l.text}</a>`;
+    }
+    // 情況 3：單一網址（所有公司共用）
+    else if (link.url && link.text) {
+      linkArea.innerHTML += `<a href="${link.url}" target="_blank" style="display:block; color:#00ccff;">${link.text}</a>`;
+    }
+
+    linkArea.classList.remove("hidden");
+  } else {
+    linkArea.innerHTML = "";
+    linkArea.classList.add("hidden");
+  }
+}
 
 function showEnding() {
   document.getElementById("game-screen").classList.add("hidden");
