@@ -258,7 +258,7 @@
       <h5>開拓屬於自己的宇宙疆域吧！</h5>
       <h3>🔍 遊戲說明</h3>
       <p>🌌 <strong>背景故事</strong><br>你是一家新創火箭公司的負責人，正準備踏入太空產業的競爭舞台。從研發火箭、第一次發射火箭，到參與登月與火星任務，你的每個選擇都將影響公司的命運！</p>
-      <p>🧠 <strong>玩法簡介</strong><br>遊戲總共8回合（第7回合包含4個小回合）。每回合會出現一個情境，讓你從多個選項中擇一。不同的火箭公司對每個選擇的成效不同，將影響你的最終得分。</p>
+      <p>🧠 <strong>玩法簡介</strong><br>遊戲總共8回合（第7回合包含4個小回合）。每回合會出現一個情境，讓你從三個選項中擇一。不同的火箭公司對每個選擇的成效不同，將影響你的最終得分。</p>
       <p>🏆 <strong>目標與結局</strong><br>遊戲結束後，將根據你的總分給予不同的評語與稱號。你能成為建立人類首個系外基地的銀河開拓者嗎？</p>
     </div>
     <p>請選擇你要經營的火箭公司：</p>
@@ -609,9 +609,18 @@ const infoScreenData = [
       Relativity: "相對論太空公司擁有世界最大的金屬 3D 列印機之一 Stargate ，並利用它來生產火箭的部分結構，該公司的第一艘火箭「人族一號」有近 85% 都是透過 3D 列印打造，是世界上首枚主要由 3D 列印製成的火箭。"
     },
     link: {
-      SpinLaunch: { text: "SpinLaunch 官網", url: "https://www.spinlaunch.com/" },
-      SpaceX: { text: "SpaceX 官網", url: "https://www.spacex.com/" },
-      Relativity: { text: "Relativity Space 官網", url: "https://www.relativityspace.com/" }
+      SpinLaunch: [
+        { url: "https://www.spinlaunch.com/", text: "SpinLaunch 官網" },
+        { url: "https://sites.google.com/view/tamwebtp/%E4%B8%80%E6%A8%93%E5%B1%95%E7%A4%BA%E5%8D%80_1/%E5%A4%AA%E7%A9%BA%E6%8E%A2%E9%9A%AA/%E7%81%AB%E7%AE%AD", text: "展示場一樓：火箭" }
+      ],
+      SpaceX: [
+        { url: "https://www.spacex.com/", text: "SpaceX 官網" },
+        { url: "https://sites.google.com/view/tamwebtp/%E4%B8%80%E6%A8%93%E5%B1%95%E7%A4%BA%E5%8D%80_1/%E5%A4%AA%E7%A9%BA%E6%8E%A2%E9%9A%AA/%E7%81%AB%E7%AE%AD", text: "展示場一樓：火箭" }
+      ],
+      Relativity: [
+        { url: "https://www.relativityspace.com/", text: "Relativity Space 官網" },
+        { url: "https://sites.google.com/view/tamwebtp/%E4%B8%80%E6%A8%93%E5%B1%95%E7%A4%BA%E5%8D%80_1/%E5%A4%AA%E7%A9%BA%E6%8E%A2%E9%9A%AA/%E7%81%AB%E7%AE%AD", text: "展示場一樓：火箭" }
+      ]
     }
   },
   {
@@ -628,20 +637,26 @@ const infoScreenData = [
     text: "公理太空站模組將逐步搭接在 ISS 上，搭接完成後 ISS 將脫離軌道墜毀至大海。由於醫學、製造業、生物組織、細胞、光纖等研究在微重力環境下有新的突破，使得許多公司也想在太空建立屬於自己的太空站。",
   	link: [
     	{ text: "公理太空公司官網", url: "https://www.axiomspace.com/axiom-station"},
-      { text: "NASA", url: "https://www.nasa.gov/humans-in-space/commercial-space/leo-economy/nasa-axiom-space-change-assembly-order-of-commercial-space-station/"}
+      { text: "NASA", url: "https://www.nasa.gov/humans-in-space/commercial-space/leo-economy/nasa-axiom-space-change-assembly-order-of-commercial-space-station/"},
+      { text: "展示場一樓：太空實驗", url: "https://sites.google.com/view/tamwebtp/%E4%B8%80%E6%A8%93%E5%B1%95%E7%A4%BA%E5%8D%80_1/%E5%A4%AA%E7%A9%BA%E6%8E%A2%E9%9A%AA/%E5%A4%AA%E7%A9%BA%E5%AF%A6%E9%A9%97"}
     ]
   },  
   {
   	title: "你知道嗎...",
     text: "NASA 的中性浮力實驗室是個巨大的泳池，訓練太空人模擬失重環境下如何建造和維護太空站。此外，太空碎片、微隕石、太陽輻射、極端溫度等使太空漫步極度危險。突發狀況下，平常訓練時的肌肉記憶所做出的動作就變得至關重要。",
-    link: { text: "NASA", url: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/"}
+    link: [
+      { text: "NASA", url: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/"},      
+      { text: "展示場一樓：太空人的生活", url: "https://sites.google.com/view/tamwebtp/%E4%B8%80%E6%A8%93%E5%B1%95%E7%A4%BA%E5%8D%80_1/%E5%A4%AA%E7%A9%BA%E6%8E%A2%E9%9A%AA/%E5%A4%AA%E7%A9%BA%E4%BA%BA%E7%9A%84%E7%94%9F%E6%B4%BB"}
+    ]
   },
   {
   	title: "你知道嗎...",
     text: "阿提米絲計畫是繼 1972 年的阿波羅 17 號任務以來，首個再次登月並建立月球基地的計畫。該計畫以希臘神話中太陽神阿波羅的孿生姐姐，同時也是月亮女神的阿提米絲命名。阿提米絲 1 號是該計畫的無載人試驗飛行，以測試太空發射系統（ SLS ）火箭、獵戶座太空船。 SLS 火箭載著獵戶座太空船在 2022 年 11 月成功發射。獵戶座太空船內搭載機器人和人體模型，經過約一個月的繞月飛行後，同年 12 月 11 日安全降落在太平洋。",
     link: [
       { text: "NASA", url: "https://www.nasa.gov/reference/artemis-i-2/"},
-      { text: "維基百科", url: "https://zh.wikipedia.org/wiki/%E9%98%BF%E6%8F%90%E7%B1%B3%E7%B5%B21%E8%99%9F"}
+      { text: "維基百科", url: "https://zh.wikipedia.org/wiki/%E9%98%BF%E6%8F%90%E7%B1%B3%E7%B5%B21%E8%99%9F"},
+      { text: "展示場一樓：登陸月球", url: "https://sites.google.com/view/tamwebtp/%E4%B8%80%E6%A8%93%E5%B1%95%E7%A4%BA%E5%8D%80_1/%E5%A4%AA%E7%A9%BA%E6%8E%A2%E9%9A%AA/%E7%99%BB%E9%99%B8%E6%9C%88%E7%90%83"},
+      { text: "展示場一樓：各國探月計畫", url: "https://sites.google.com/view/tamwebtp/%E4%B8%80%E6%A8%93%E5%B1%95%E7%A4%BA%E5%8D%80_1/%E5%A4%AA%E7%A9%BA%E6%8E%A2%E9%9A%AA/%E5%90%84%E5%9C%8B%E6%8E%A2%E6%9C%88%E8%A8%88%E7%95%AB"}
      ]
   },
   {
@@ -796,10 +811,16 @@ function showInfoScreen(title, text) {
         linkArea.innerHTML += `<a href="${l.url}" target="_blank" style="display:block; color:#00ccff;">${l.text}</a>`;
       });
     }
-    // 情況 2：公司分別有自己的單一網址
+    // 情況 2：公司分別有自己的單一或多個網址
     else if (typeof link === "object" && link[company]) {
-      const l = link[company];
-      linkArea.innerHTML += `<a href="${l.url}" target="_blank" style="display:block; color:#00ccff;">${l.text}</a>`;
+      const companyLinks = link[company];
+      if (Array.isArray(companyLinks)) {
+        companyLinks.forEach(l => {
+          linkArea.innerHTML += `<a href="${l.url}" target="_blank" style="display:block; color:#00ccff;">${l.text}</a>`;
+        });
+      } else {
+        linkArea.innerHTML += `<a href="${companyLinks.url}" target="_blank" style="display:block; color:#00ccff;">${companyLinks.text}</a>`;
+      }
     }
     // 情況 3：單一網址（所有公司共用）
     else if (link.url && link.text) {
