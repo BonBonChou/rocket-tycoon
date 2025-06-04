@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Noto Sans TC', sans-serif;
-      background: linear-gradient(to right, #152a32, #192e37, #192e36);
+      background: transparent;/*linear-gradient(to right, #152a32, #192e37, #192e36);*/
       color: #fff;
       text-align: center;
       padding: 2em;
@@ -326,7 +326,7 @@
         <li>22 分：締造神話！你打破星際疆界，建立人類首個系外基地，榮登「銀河開拓者」的寶座！</li>
       </ul>
     </div>
-    <button onclick="location.reload()">重新開始</button>
+    <button onclick="restartGame()">重新開始</button>
   </div>
 </div>
 
@@ -875,6 +875,23 @@ function showEnding() {
   document.getElementById("ending-text").textContent = ending.text;
   document.getElementById("endscore-display").textContent = `你的總分：${score}/22`;
 }
+function restartGame() {
+  // 回復初始變數
+  currentRound = 0;
+  score = 0;
+  company = "";
+  currentChoiceScore = 0;
+
+  // 隱藏所有畫面
+  document.getElementById("end-screen").classList.add("hidden");
+  document.getElementById("final-message-screen").classList.add("hidden");
+  document.getElementById("info-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.add("hidden");
+
+  // 顯示初始選公司畫面
+  document.getElementById("start-screen").classList.remove("hidden");
+}
+
 </script>
 </body>
 </html>
